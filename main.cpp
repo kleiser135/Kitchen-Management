@@ -1,11 +1,20 @@
-#include "mainwindow.h"
 
-#include <QApplication>
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    return a.exec();
+#include "auth.cpp"
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+
+
+
+int main () {
+	
+	load(FILE_AUTHDB);
+	menu_pin();
+	
+	return 0;
+	
 }
