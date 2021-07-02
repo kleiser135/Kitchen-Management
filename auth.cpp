@@ -8,6 +8,20 @@
 using namespace std;
 
 
+// Global constants to set pin size values
+struct PINSIZE {
+  const int SERVER = 3;
+  const int COOK = 3;
+  const int MANAGER = 4;
+} PINSIZE;
+
+// Global constants to set return values for authenticate()
+struct PINAUTH_RETURN {
+  const int SERVER = 1;
+  const int COOK = 1;
+  const int MANAGER = 2;
+} PINAUTH_RETURN;
+
 const string FILE_AUTHDB = "authdb.csv";
 vector<string> localDB = {};
 int localDBn = 0;
@@ -73,16 +87,32 @@ bool locate (string a) {
 }
 
 
-void authenticate () {
+int authenticate (string input) {
 	
-	cout << endl;
-	cout << "PIN: ";
-	cout << endl;
-	
-	// check against vector DB
-	// return 1 for server/cook
-	// return 2 for management
-	// return 0 
+	// Validate
+	//	check for exisiting pin
+	bool found = false;
+	for ( int i = 0; i < localDBn; i++ ) {
+		if ( input == localDB.at(i) ) {
+			found = true;
+			break;
+		}
+	}
+	if ( found == true ) {
+		if ( input.length() == PINSIZE.MANAGER ) {
+			return PINAUTH_RETURN.MANAGER;
+		}
+		else if ( input.length() == PINSIZE.SERVER ) {
+			return PINAUTH_RETURN.SERVER;
+		}
+		else if ( input.length() == PINSIZE.COOK ) {
+			return PINAUTH_RETURN.COOK;
+		}
+		else {
+			cout << endl << "ERR: Pin is not valid number of digits." << endl;
+			return 0;
+		}
+	}
 	
 }
 
@@ -90,7 +120,23 @@ void authenticate () {
 void menu_pin_create(string input) {
 	
 	localDBn = localDB.size();
-		
+	
+	// Validate
+	//	check if pin is manager level and require authentication
+	if ( input.length() == PINSIZE.MANAGER ) {
+		cout << "Only managers can create manager pins. " << 
+				"Please authenticate below." << endl;
+		string superpin;
+		cin >> superpin;
+		if ( authenticate(superpin) == PINAUTH_RETURN.MANAGER ) {
+			// proceed
+		}
+		else {
+			cout << "The pin you entered is not allowed to create manager pins." << endl;
+			return;
+		}
+	}
+	
 	// Validate
 	//	check for exisiting pin
 	for ( int i = 0; i < localDBn; i++) {
@@ -113,6 +159,22 @@ void menu_pin_delete(string input) {
 	
 	localDBn = localDB.size();
 	
+	// Validate
+	//	check if pin is manager level and require authentication
+	if ( input.length() == PINSIZE.MANAGER ) {
+		cout << "Only managers can delete manager pins. " << 
+				"Please authenticate below." << endl;
+		string superpin;
+		cin >> superpin;
+		if ( authenticate(superpin) == PINAUTH_RETURN.MANAGER ) {
+			// proceed
+		}
+		else {
+			cout << "The pin you entered is not allowed to delete manager pins." << endl;
+			return;
+		}
+	}
+	
 	// Validate & Remove
 	//	check for exisiting pin
 	for ( int i = 0; i < localDBn; i++ ) {
@@ -133,17 +195,33 @@ void menu_pin_update(string input) {
 	
 	localDBn = localDB.size();
 	
+	// Validate
+	//	check if pin is manager level and require authentication
+	if ( input.length() == PINSIZE.MANAGER ) {
+		cout << "Only managers can change manager pins. " << 
+				"Please authenticate below." << endl;
+		string superpin;
+		cin >> superpin;
+		if ( authenticate(superpin) == PINAUTH_RETURN.MANAGER ) {
+			// proceed
+		}
+		else {
+			cout << "The pin you entered is not allowed to change manager pins." << endl;
+			return;
+		}
+	}
+	
 	// Replace
 	//	replace the existing pin with the new pin
 	menu_pin_delete(input);
 	input = "";
+	cout << "New Pin: \n";
 	cin >> input;
 	menu_pin_create(input);
-	localDB.push_back(input);
+	//localDB.push_back(input);
 	
 	// Store
 	//	save pin to the database (runtime and storage)
-	localDB.push_back(input);
 	localDBn = localDB.size();
 	store(FILE_AUTHDB);
 	
@@ -195,6 +273,18 @@ void menu_pin () {
 			cout << "Enter pin to delete: " << endl;
 			cin >> input;
 			menu_pin_delete(input);
+		break;}
+		
+		case 4: {// 4. Authenticate
+			cout << endl;
+			cout << "AUTHENTICATE (TEST)" << endl;
+			// Authenticate
+			//	prompt user 
+			string input;
+			cout << "\nEnter pin to continue: ";
+			cin >> input;
+			cout << "\n";
+			authenticate(input);
 		break;}
 		
 		default:

@@ -8,8 +8,6 @@
 using namespace std;
 
 
-
-
 int main () {
 	
 	load(FILE_AUTHDB);
