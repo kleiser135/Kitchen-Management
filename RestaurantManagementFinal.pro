@@ -9,14 +9,26 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    cookstage.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    managerfunctionstage.cpp \
+    managerstage.cpp \
+    staffstage.cpp
 
 HEADERS += \
-    mainwindow.h
+    cookstage.h \
+    mainwindow.h \
+    managerfunctionstage.h \
+    managerstage.h \
+    staffstage.h
 
 FORMS += \
-    mainwindow.ui
+    cookstage.ui \
+    mainwindow.ui \
+    managerfunctionstage.ui \
+    managerstage.ui \
+    staffstage.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
