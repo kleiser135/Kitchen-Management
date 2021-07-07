@@ -37,6 +37,136 @@
     <string>Manager Functions</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="menuEditsButton">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>190</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Menu Edits</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pastChecksButton">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>190</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Past Check</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="adjustCheckButton">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>190</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Adjust Check</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="trackOrderTimeButton">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>190</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Track Order Time</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="trackInventoryButton">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>320</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Track Inventory</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="orderInventory">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>320</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Order Inventory</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="eightySixItemsButton">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>320</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>86 Items</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="openTabButton">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>320</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Open Tab</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="managerMessage">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>450</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Manager Message</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="compsAndDiscountsButton">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>450</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Comps and Discounts</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

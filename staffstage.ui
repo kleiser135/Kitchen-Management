@@ -16,7 +16,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>360</x>
+     <x>380</x>
      <y>10</y>
      <width>331</width>
      <height>61</height>
@@ -29,6 +29,84 @@
    </property>
    <property name="text">
     <string>Server Menu</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="clockInButton">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>220</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Clock In</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="newTableButton">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>220</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>New Table</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="clockOutButton">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>220</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Clock Out</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="checkOutButton">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>350</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Check Out</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="getCheckButton">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>350</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Get Check</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="closeTabButton">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>350</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Close Tab</string>
    </property>
   </widget>
  </widget>

@@ -31,6 +31,58 @@
     <string>Cook Menu</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="trackOrderTimeButton">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>300</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Track Order Time</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="getCheckTime">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>300</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Get Check</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="clockInButton">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>300</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Clock In</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="clockOutButton">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>300</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Clock Out</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
