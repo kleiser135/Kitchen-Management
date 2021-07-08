@@ -1,6 +1,9 @@
 #include "managerstage.h"
-#include "managerfunctionstage.h"
 #include "ui_managerstage.h"
+
+#include "mainwindow.h"
+
+MainWindow *mainpointer3;
 
 managerStage::managerStage(QWidget *parent) :
     QDialog(parent),
@@ -14,11 +17,21 @@ managerStage::~managerStage()
     delete ui;
 }
 
-void managerStage::on_pushButton_clicked()
+void managerStage::on_pushButton_clicked() //button to open manager stage menu
 {
-    managerFunctionStage managerFunctionMenu;
+    managerFunctionStage *managerfunctionstage1;
     hide();
-    managerFunctionMenu.setModal(true);
-    managerFunctionMenu.exec();
+    managerfunctionstage1=new managerFunctionStage(this);
+    managerfunctionstage1->show();
+    //managerFunctionMenu.setModal(true);
+    //managerFunctionMenu.exec();
+}
+
+
+void managerStage::on_pushButton_5_clicked() //back button to main menu
+{
+    hide();
+    mainpointer3=new MainWindow(this);
+    mainpointer3->show();
 }
 

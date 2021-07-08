@@ -15,6 +15,9 @@ public:
     explicit cookStage(QWidget *parent = nullptr);
     ~cookStage();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::cookStage *ui;
 };

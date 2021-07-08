@@ -15,6 +15,9 @@ public:
     explicit staffStage(QWidget *parent = nullptr);
     ~staffStage();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::staffStage *ui;
 };

@@ -1,6 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "managerstage.h" //manager menu stage
+#include "cookstage.h" //cook menu stage
+#include "staffstage.h" //staff menu stage
+#include "managerfunctionstage.h" //manager function menu stage
+
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -20,5 +25,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    cookStage *cookstage;
+    managerFunctionStage *managerfunctionstage;
+    managerStage *managerstage;
+    staffStage *staffstage;
 };
 #endif // MAINWINDOW_H

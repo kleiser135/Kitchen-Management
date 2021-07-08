@@ -1,8 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "managerstage.h" //manager menu stage
-#include "cookstage.h" //cook menu stage
-#include "staffstage.h" //staff menu stage
+
+//#include "managerstage.h" //manager menu stage
+//#include "cookstage.h" //cook menu stage
+//#include "staffstage.h" //staff menu stage
+
 #include <QMessageBox> //need this in order to use error boxes, the form is QMessageBox::warning(this, "Name of error box", "Message within error box");
 
 MainWindow::MainWindow(QWidget *parent)
@@ -25,27 +27,34 @@ void MainWindow::on_pushButton_clicked()
     if(pin == "cook") //compare PIN with default values
     {
         //open cooks menu
-        cookStage cookMenu;
+        //cookStage cookMenu;
         hide();
-        cookMenu.setModal(true);
-        cookMenu.exec();
+        cookstage=new cookStage(this);
+        cookstage->show();
+        //cookMenu.setModal(true);
+        //cookMenu.exec();
 
     }
     else if(pin == "server")
     {
         //opens server menu
-        staffStage serverMenu;
+        //staffStage serverMenu;
         hide();
-        serverMenu.setModal(true);
-        serverMenu.exec();
+        staffstage=new staffStage(this);
+        staffstage->show();
+        //serverMenu.setModal(true);
+        //serverMenu.exec();
+
     }
     else if(pin == "manager")
     {
         //opens manager menu
-        managerStage managerMenu;
+        //managerStage managerMenu;
         hide();
-        managerMenu.setModal(true);
-        managerMenu.exec();
+        managerstage=new managerStage(this);
+        managerstage->show();
+        //managerMenu.setModal(true);
+        //managerMenu.exec();
     }
     else
     {
