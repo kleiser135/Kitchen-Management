@@ -19,181 +19,261 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>10</y>
-     <width>491</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>43</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Manager Functions</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="menuEditsButton">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>190</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Menu Edits</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pastChecksButton">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>190</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Past Check</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="adjustCheckButton">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>190</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Adjust Check</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="trackOrderTimeButton">
-   <property name="geometry">
-    <rect>
-     <x>740</x>
-     <y>190</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Track Order Time</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="trackInventoryButton">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>320</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Track Inventory</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="orderInventory">
-   <property name="geometry">
-    <rect>
-     <x>740</x>
-     <y>320</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Order Inventory</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="eightySixItemsButton">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>320</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>86 Items</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="openTabButton">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>320</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Open Tab</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="managerMessage">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>450</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Manager Message</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="compsAndDiscountsButton">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>450</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Comps and Discounts</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>580</y>
-     <width>171</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Back</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>580</y>
-     <width>171</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Home</string>
-   </property>
-  </widget>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="6" column="0">
+    <widget class="QPushButton" name="eightySixItemsButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>86 Items</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QPushButton" name="adjustCheckButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Adjust Check</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="2">
+    <widget class="QPushButton" name="compsAndDiscountsButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Comps and Discounts</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <widget class="QPushButton" name="trackInventoryButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Track Inventory</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="2" alignment="Qt::AlignHCenter">
+    <widget class="QPushButton" name="pushButton">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Back</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="2" alignment="Qt::AlignHCenter">
+    <widget class="QPushButton" name="orderInventory">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Order Inventory</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QPushButton" name="pastChecksButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Past Check</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QPushButton" name="openTabButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Open Tab</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QPushButton" name="trackOrderTimeButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Track Order Time</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="menuEditsButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Menu Edits</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0">
+    <widget class="QPushButton" name="managerMessage">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Manager Message</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0" alignment="Qt::AlignHCenter">
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Home</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="4">
+    <widget class="QLabel" name="label">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Light</family>
+       <pointsize>43</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Manager Functions</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
+ <tabstops>
+  <tabstop>menuEditsButton</tabstop>
+  <tabstop>adjustCheckButton</tabstop>
+  <tabstop>trackOrderTimeButton</tabstop>
+  <tabstop>pastChecksButton</tabstop>
+  <tabstop>openTabButton</tabstop>
+  <tabstop>orderInventory</tabstop>
+  <tabstop>eightySixItemsButton</tabstop>
+  <tabstop>trackInventoryButton</tabstop>
+  <tabstop>managerMessage</tabstop>
+  <tabstop>compsAndDiscountsButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

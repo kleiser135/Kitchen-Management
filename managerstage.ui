@@ -6,126 +6,211 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
+    <width>1036</width>
     <height>768</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>330</x>
-     <y>10</y>
-     <width>381</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>43</pointsize>
-    </font>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
-   </property>
-   <property name="text">
-    <string>Manager Menu</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>420</x>
-     <y>280</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Manager Functions</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="clockInButton">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>280</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Clock In</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="closeTabButton">
-   <property name="geometry">
-    <rect>
-     <x>640</x>
-     <y>280</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Close Tab</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="geometry">
-    <rect>
-     <x>640</x>
-     <y>400</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>New Table</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_3">
-   <property name="geometry">
-    <rect>
-     <x>420</x>
-     <y>400</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Get  Check</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_4">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>400</y>
-     <width>171</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>PushButton</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_5">
-   <property name="geometry">
-    <rect>
-     <x>420</x>
-     <y>530</y>
-     <width>171</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Back</string>
-   </property>
-  </widget>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="5" column="2">
+    <widget class="QPushButton" name="closeTabButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Close Tab</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>New Table</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="2">
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="7" column="0">
+    <widget class="QPushButton" name="clockInButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Clock In</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <widget class="QPushButton" name="pushButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Manager Functions</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="2">
+    <widget class="QPushButton" name="pushButton_4">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Clock Out</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QLabel" name="label">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Light</family>
+       <pointsize>43</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+       <kerning>false</kerning>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>Manager Menu</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="2">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="6" column="0">
+    <widget class="QPushButton" name="pushButton_3">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Get  Check</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="2" alignment="Qt::AlignHCenter">
+    <widget class="QPushButton" name="pushButton_5">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Back</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
+ <tabstops>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>closeTabButton</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>clockInButton</tabstop>
+  <tabstop>pushButton_4</tabstop>
+  <tabstop>pushButton_5</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
