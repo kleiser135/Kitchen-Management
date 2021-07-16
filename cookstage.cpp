@@ -24,3 +24,9 @@ void cookStage::on_pushButton_clicked()
     mainpointer->show();
 }
 
+
+void cookStage::on_trackOrderTimeButton_pressed()
+{
+    //call track order time
+}
+

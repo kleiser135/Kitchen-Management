@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/Resources"/>
+    <qresource prefix="/">
+        <file>Images/CookBackground.png</file>
+        <file>Images/ServerBackground.png</file>
+        <file>Images/ManagerBackground.png</file>
+        <file>Images/ManagerFunctionsBackground.png</file>
+        <file>Images/MainMenuBackground.png</file>
+    </qresource>
+</RCC>
