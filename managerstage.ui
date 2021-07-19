@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1036</width>
+    <width>1050</width>
     <height>768</height>
    </rect>
   </property>
@@ -52,154 +52,6 @@ background-color:#2a2a2a;
      </property>
     </widget>
    </item>
-   <item row="5" column="0">
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="minimumSize">
-      <size>
-       <width>500</width>
-       <height>101</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Yu Gothic Medium</family>
-       <pointsize>15</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton#pushButton_2{
-color: #F2F0D5;
-background-color: rgb(11, 17, 25);
-
-border: 2px solid #F2F0D5;
-border-radius: 6px;
-}
-
-QPushButton:hover#pushButton_2{
-color: rgb(255, 255, 255);
-background-color:#2a2a2a;
-}</string>
-     </property>
-     <property name="text">
-      <string>New Table</string>
-     </property>
-    </widget>
-   </item>
-   <item row="10" column="2">
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="7" column="0">
-    <widget class="QPushButton" name="clockInButton">
-     <property name="minimumSize">
-      <size>
-       <width>500</width>
-       <height>101</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Yu Gothic Medium</family>
-       <pointsize>15</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton#clockInButton{
-color: #F2F0D5;
-background-color: rgb(11, 17, 25);
-
-border: 2px solid #F2F0D5;
-border-radius: 6px;
-}
-
-QPushButton:hover#clockInButton{
-color: rgb(255, 255, 255);
-background-color:#2a2a2a;
-}</string>
-     </property>
-     <property name="text">
-      <string>Clock In</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="2">
-    <widget class="QPushButton" name="pushButton">
-     <property name="minimumSize">
-      <size>
-       <width>500</width>
-       <height>101</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Yu Gothic Medium</family>
-       <pointsize>15</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton#pushButton{
-color: #F2F0D5;
-background-color: rgb(11, 17, 25);
-
-border: 2px solid #F2F0D5;
-border-radius: 6px;
-}
-
-QPushButton:hover#pushButton{
-color: rgb(255, 255, 255);
-background-color:#2a2a2a;
-}</string>
-     </property>
-     <property name="text">
-      <string>Manager Functions</string>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="2">
-    <widget class="QPushButton" name="pushButton_4">
-     <property name="minimumSize">
-      <size>
-       <width>500</width>
-       <height>101</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Yu Gothic Medium</family>
-       <pointsize>15</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton#pushButton_4{
-color: #F2F0D5;
-background-color: rgb(11, 17, 25);
-
-border: 2px solid #F2F0D5;
-border-radius: 6px;
-}
-
-QPushButton:hover#pushButton_4{
-color: rgb(255, 255, 255);
-background-color:#2a2a2a;
-}</string>
-     </property>
-     <property name="text">
-      <string>Clock Out</string>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="0" colspan="3">
     <widget class="QLabel" name="label">
      <property name="minimumSize">
@@ -238,6 +90,85 @@ border-radius: 6px;
      </property>
     </widget>
    </item>
+   <item row="7" column="2">
+    <widget class="QPushButton" name="clockOutButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+       <pointsize>15</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#clockOutButton{
+color: #F2F0D5;
+background-color: rgb(11, 17, 25);
+
+border: 2px solid #F2F0D5;
+border-radius: 6px;
+}
+
+QPushButton:hover#clockOutButton{
+color: rgb(255, 255, 255);
+background-color:#2a2a2a;
+}</string>
+     </property>
+     <property name="text">
+      <string>Clock Out</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QPushButton" name="getCheckButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+       <pointsize>15</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#getCheckButton{
+color: #F2F0D5;
+background-color: rgb(11, 17, 25);
+
+border: 2px solid #F2F0D5;
+border-radius: 6px;
+}
+
+QPushButton:hover#getCheckButton{
+color: rgb(255, 255, 255);
+background-color:#2a2a2a;
+}</string>
+     </property>
+     <property name="text">
+      <string>Get  Check</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <spacer name="verticalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
    <item row="12" column="2">
     <spacer name="verticalSpacer">
      <property name="orientation">
@@ -253,39 +184,6 @@ border-radius: 6px;
       </size>
      </property>
     </spacer>
-   </item>
-   <item row="6" column="0">
-    <widget class="QPushButton" name="pushButton_3">
-     <property name="minimumSize">
-      <size>
-       <width>500</width>
-       <height>101</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Yu Gothic Medium</family>
-       <pointsize>15</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton#pushButton_3{
-color: #F2F0D5;
-background-color: rgb(11, 17, 25);
-
-border: 2px solid #F2F0D5;
-border-radius: 6px;
-}
-
-QPushButton:hover#pushButton_3{
-color: rgb(255, 255, 255);
-background-color:#2a2a2a;
-}</string>
-     </property>
-     <property name="text">
-      <string>Get  Check</string>
-     </property>
-    </widget>
    </item>
    <item row="11" column="2" alignment="Qt::AlignHCenter">
     <widget class="QPushButton" name="pushButton_5">
@@ -320,10 +218,79 @@ background-color:#2a2a2a;
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <spacer name="verticalSpacer_3">
+   <item row="7" column="0">
+    <widget class="QPushButton" name="clockInButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+       <pointsize>15</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#clockInButton{
+color: #F2F0D5;
+background-color: rgb(11, 17, 25);
+
+border: 2px solid #F2F0D5;
+border-radius: 6px;
+}
+
+QPushButton:hover#clockInButton{
+color: rgb(255, 255, 255);
+background-color:#2a2a2a;
+}</string>
+     </property>
+     <property name="text">
+      <string>Clock In</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QPushButton" name="newTableButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+       <pointsize>15</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#newTableButton{
+color: #F2F0D5;
+background-color: rgb(11, 17, 25);
+
+border: 2px solid #F2F0D5;
+border-radius: 6px;
+}
+
+QPushButton:hover#newTableButton{
+color: rgb(255, 255, 255);
+background-color:#2a2a2a;
+}</string>
+     </property>
+     <property name="text">
+      <string>New Table</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="2">
+    <spacer name="verticalSpacer_2">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Expanding</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -333,15 +300,48 @@ background-color:#2a2a2a;
      </property>
     </spacer>
    </item>
+   <item row="6" column="2">
+    <widget class="QPushButton" name="managerFunctionsButton">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>101</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic Medium</family>
+       <pointsize>15</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#managerFunctionsButton{
+color: #F2F0D5;
+background-color: rgb(11, 17, 25);
+
+border: 2px solid #F2F0D5;
+border-radius: 6px;
+}
+
+QPushButton:hover#managerFunctionsButton{
+color: rgb(255, 255, 255);
+background-color:#2a2a2a;
+}</string>
+     </property>
+     <property name="text">
+      <string>Manager Functions</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <tabstops>
-  <tabstop>pushButton_2</tabstop>
+  <tabstop>newTableButton</tabstop>
   <tabstop>closeTabButton</tabstop>
-  <tabstop>pushButton_3</tabstop>
-  <tabstop>pushButton</tabstop>
+  <tabstop>getCheckButton</tabstop>
+  <tabstop>managerFunctionsButton</tabstop>
   <tabstop>clockInButton</tabstop>
-  <tabstop>pushButton_4</tabstop>
+  <tabstop>clockOutButton</tabstop>
   <tabstop>pushButton_5</tabstop>
  </tabstops>
  <resources/>

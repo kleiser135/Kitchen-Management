@@ -34,3 +34,63 @@ void managerFunctionStage::on_pushButton_2_clicked() //home button to main menu 
     mainpointer4->show();
 }
 
+
+void managerFunctionStage::on_menuEditsButton_clicked()
+{
+    //manager_functions(1);
+}
+
+
+void managerFunctionStage::on_trackOrderTimeButton_clicked()
+{
+    //manager_functions(7);
+}
+
+
+void managerFunctionStage::on_openTabButton_clicked()
+{
+    //manager_functions(2);
+}
+
+
+void managerFunctionStage::on_eightySixItemsButton_clicked()
+{
+    //manager_functions(5);
+}
+
+
+void managerFunctionStage::on_managerMessage_clicked()
+{
+    //manager_functions(9);
+}
+
+
+void managerFunctionStage::on_adjustCheckButton_clicked()
+{
+    //manager_functions(6);
+}
+
+
+void managerFunctionStage::on_pastChecksButton_clicked()
+{
+    //manager_functions(3);
+}
+
+
+void managerFunctionStage::on_orderInventory_clicked()
+{
+    //manager_functions(8);
+}
+
+
+void managerFunctionStage::on_trackInventoryButton_clicked()
+{
+    //manager_functions(4);
+}
+
+
+void managerFunctionStage::on_compsAndDiscountsButton_clicked()
+{
+    //manager_functions(10);
+}
+

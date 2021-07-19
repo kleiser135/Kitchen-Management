@@ -18,6 +18,10 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_clockOutButton_clicked();
+
+    void on_clockInButton_clicked();
+
 private:
     Ui::staffStage *ui;
 };

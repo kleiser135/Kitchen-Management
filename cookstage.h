@@ -20,6 +20,14 @@ private slots:
 
     void on_trackOrderTimeButton_pressed();
 
+    void on_clockOutButton_clicked();
+
+    void on_clockInButton_clicked();
+
+    void on_getCheckTime_clicked();
+
+    void on_trackOrderTimeButton_clicked();
+
 private:
     Ui::cookStage *ui;
 };
