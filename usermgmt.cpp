@@ -50,8 +50,8 @@ struct kronos {
 vector<kronos> KRONOS_DATA = {};
 
 
-string AUTHPIN;
-int authenticate (string input, int minAccess) {
+
+int authenticate (string input) {
 	
 	// Validate
 	//	check for exisiting pin
@@ -62,9 +62,7 @@ int authenticate (string input, int minAccess) {
 			break;
 		}
 	}
-	
-	AUTHPIN = ""; // clear gloabal authpin; value already passed to function
-	
+		
 	if ( found == true ) {
 		if ( input.length() == PINSIZE.MANAGER ) {
 			return PINAUTH_RETURN.MANAGER;
@@ -76,7 +74,31 @@ int authenticate (string input, int minAccess) {
 			return PINAUTH_RETURN.COOK;
 		}
 		else {
-			cout << endl << "ERR: Pin is not valid number of digits." << endl;
+			return 0;
+		}
+	}
+	
+}
+string AUTHPIN;
+int authenticate (string input, int minAccess) { // ex: authenticate("585",PINSIZE.MANAGER);
+	
+	// Validate
+	//	check for exisiting pin
+	bool found = false;
+	for ( int i = 0; i < localDBn; i++ ) {
+		if ( input == localDB.at(i) ) {
+			found = true;
+			break;
+		}
+	}
+		
+	AUTHPIN = ""; // clear gloabal authpin; value already passed to function
+	
+	if ( validate(input) ) {
+		if ( input.length() >= minAccess ) {
+			return 1;
+		}
+		else {
 			return 0;
 		}
 	}
