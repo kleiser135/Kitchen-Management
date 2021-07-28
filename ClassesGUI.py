@@ -4,6 +4,8 @@ from tkinter import messagebox
 import time
 import sqlite3
 
+
+
 def destroyDisplay(): #clears the entire window
     for widget in root.winfo_children(): #winfo_children returns a list of all widgets which are children of this widget.
         widget.destroy() #destory all widgets
@@ -11,24 +13,34 @@ def destroyDisplay(): #clears the entire window
 class MainWindow():
     #constructor
     def __init__(self,master): #master means we pass in the main window (our variable 'root')
-        frame = Frame(master) #makes a frame in the main window(root)
+        frame = Frame(master, bg = "#2d2d2d") #makes a frame in the main window(root)
         frame.pack() #displays frame on screen
-        root.geometry("200x100")
-        #login label
-        self.Login_Label=Label(text="Login")
-        self.Login_Label.pack(side=LEFT)
+        root.geometry("1280x720+150+50")
+
+
+        #Title label
+        self.Title_Label=Label(frame, text="Guadalupes" , bg = "#2d2d2d", fg="#ffffff", pady=50, font=('Segoe Script', 48))
+        self.Title_Label.pack()
+
+        # pin label
+        self.Pin_Label = Label(frame, text="PIN", font=('Segoe UI Light', 16), bg = "#2d2d2d", fg="#ffffff")
+        self.Pin_Label.pack(side=LEFT, ipadx=10)
 
         #pin text entry
-        self.Pin_Entry = Entry()
-        self.Pin_Entry.pack(side=LEFT)
+        self.Pin_Entry = Entry(frame, width=60)
+        self.Pin_Entry.pack(side=LEFT, ipady=8)
+
+        #login and quit button frame
+        login_quit_frame=Frame(bg = "#2d2d2d")
+        login_quit_frame.pack()
 
         #login button
-        self.Login_Button = Button(frame, text="Login", command=self.Login) #frame puts button widget in the frame
-        self.Login_Button.pack(side=LEFT)
+        self.Login_Button = Button(login_quit_frame, text="Login",font=('Segoe UI Light', 16),  width = 10,command=self.Login) #frame puts button widget in the frame
+        self.Login_Button.pack(side=LEFT, padx=5, pady=20)
 
         #quit button
-        self.Quit_Button = Button (frame, text="Quit", command=frame.quit)
-        self.Quit_Button.pack(side=LEFT)
+        self.Quit_Button = Button (login_quit_frame, text="Quit", font=('Segoe UI Light', 16), width = 10,command=frame.quit)
+        self.Quit_Button.pack(side=LEFT , padx=5, pady=20)
 
     #functions
     def Login(self):
@@ -56,34 +68,47 @@ class CookWindow():
     def __init__(self):
         frame = Frame()
         frame.pack()
-        root.geometry("400x100")
+        root.geometry("1280x720+150+50")
+
         #cook menu label
-        self.Cook_Label = Label(text="Cook Menu")
-        self.Cook_Label.pack(side=LEFT)
+        self.Cook_Label = Label(frame, text="Cook Menu", font=('Segoe Script', 48), pady=50, bg = "#2d2d2d", fg="#ffffff")
+        self.Cook_Label.pack()
+
+        #clock in/out frame
+        clock_frame=Frame(bg = "#2d2d2d")
+        clock_frame.pack()
 
         #clock in button
-        self.ClockIn_Button = Button(frame, text="Clock In")
-        self.ClockIn_Button.pack(side=LEFT)
+        self.ClockIn_Button = Button(clock_frame, text="Clock In", font=('Segoe UI Light', 16),  width = 10)
+        self.ClockIn_Button.pack(side=LEFT, padx=5, pady=10)
 
         # clock out button
-        self.ClockOut_Button = Button(frame, text="Clock Out", command=self.clockOut)
-        self.ClockOut_Button.pack(side=LEFT)
+        self.ClockOut_Button = Button(clock_frame, text="Clock Out", font=('Segoe UI Light', 16),  width = 10, command=self.clockOut)
+        self.ClockOut_Button.pack(side=LEFT, padx=5, pady=10)
+
+        #check and ordertime frame
+        check_order_frame=Frame(bg = "#2d2d2d")
+        check_order_frame.pack()
 
         # get check button
-        self.GetCheck_Button = Button(frame, text="Get Check")
-        self.GetCheck_Button.pack(side=LEFT)
+        self.GetCheck_Button = Button(check_order_frame, text="Get Check", font=('Segoe UI Light', 16),  width = 10)
+        self.GetCheck_Button.pack(side=LEFT, padx=5, pady=10)
 
         # track order time button
-        self.TrackOrderTime_Button = Button(frame, text="Track Order Time")
-        self.TrackOrderTime_Button.pack(side=LEFT)
+        self.TrackOrderTime_Button = Button(check_order_frame, text="Order Time", font=('Segoe UI Light', 16),  width = 10)
+        self.TrackOrderTime_Button.pack(side=LEFT, padx=5, pady=10)
+
+        #back and quit frame
+        back_quit = Frame(bg = "#2d2d2d")
+        back_quit.pack()
 
         # back button (goes back to main login screen)
-        self.Back_Button = Button(frame, text="Back", command=self.Back_Pushed)
-        self.Back_Button.pack(side=BOTTOM)
+        self.Back_Button = Button(back_quit, text="Back", font=('Segoe UI Light', 16),  width = 10, command=self.Back_Pushed)
+        self.Back_Button.pack(side=LEFT, padx=5, pady=50)
 
         # quit button
-        self.Quit_Button = Button(frame, text="Quit", command=frame.quit)
-        self.Quit_Button.pack(side=BOTTOM)
+        self.Quit_Button = Button(back_quit, text="Quit", font=('Segoe UI Light', 16),  width = 10, command=frame.quit)
+        self.Quit_Button.pack(side=LEFT, padx=5, pady=50)
 
     def Back_Pushed(self):
         destroyDisplay()
@@ -93,70 +118,87 @@ class CookWindow():
         destroyDisplay()
         frame = Frame()
         frame.pack()
-        root.geometry("150x100")  
+        root.geometry("150x100")
         header = Label(frame,text = "Enter Pin to Clock Out")
         header.grid(row = 1, column = 1, ipadx = "10")
         pin_field = Entry(frame)
         pin_field.grid(row = 2, column = 1, ipadx = "10")
         timestr = time.strftime("%Y %m %d- %H %M %S")
-        
+
         def submit():
             pin = pin_field.get()
             if(pin != ""):
-                clockOutFile = open(pin + ".txt","a+")   
-                clockOutFile.write("\nOut " + timestr) 
+                clockOutFile = open(pin + ".txt","a+")
+                clockOutFile.write("\nOut " + timestr)
                 clockOutFile.close
                 destroyDisplay()
                 mywindow=MainWindow(root)
         self.SubmitButton = Button(frame, text="Clock Out", command = submit)
         self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
 
-        
 
-        
 
-        
+
+
+
 
 class StaffWindow():
     def __init__(self):
         frame = Frame()
         frame.pack()
-        root.geometry("400x100")    
-        #cook menu label
-        self.Staff_Label = Label(text="Server Menu")
-        self.Staff_Label.pack(side=LEFT)
+        root.geometry("1280x720+150+50")
+
+        #staff menu label
+        self.Staff_Label = Label(text="Server Menu", font=('Segoe Script', 48), pady=50, bg="#2d2d2d", fg="#ffffff")
+        self.Staff_Label.pack()
+
+        #new table close tab frame
+        new_close_frame=Frame(bg = "#2d2d2d")
+        new_close_frame.pack()
 
         #new table button
-        self.NewTable_Button = Button(frame, text="New Table")
-        self.NewTable_Button.pack(side=LEFT)
+        self.NewTable_Button = Button(new_close_frame, text="New Table", font=('Segoe UI Light', 16),  width = 10)
+        self.NewTable_Button.pack(side=LEFT, padx=5, pady=10)
 
         #close tab button
-        self.CloseTab_Button = Button(frame, text="Close Tab")
-        self.CloseTab_Button.pack(side=LEFT)
+        self.CloseTab_Button = Button(new_close_frame, text="Close Tab", font=('Segoe UI Light', 16),  width = 10)
+        self.CloseTab_Button.pack(side=LEFT, padx=5, pady=10)
+
+        #get check,check out frame
+        get_out_check=Frame(bg = "#2d2d2d")
+        get_out_check.pack()
 
         #get check button
-        self.GetCheck_Button = Button(frame, text="Get Check")
-        self.GetCheck_Button.pack(side=LEFT)
+        self.GetCheck_Button = Button(get_out_check, text="Get Check",font=('Segoe UI Light', 16),  width = 10)
+        self.GetCheck_Button.pack(side=LEFT, padx=5, pady=10)
 
         #check out button
-        self.CheckOut_Button = Button(frame, text="Check Out")
-        self.CheckOut_Button.pack(side=LEFT)
+        self.CheckOut_Button = Button(get_out_check, text="Check Out",font=('Segoe UI Light', 16),  width = 10)
+        self.CheckOut_Button.pack(side=LEFT, padx=5, pady=10)
+
+        #clock in out frame
+        clock_in_out = Frame(bg="#2d2d2d")
+        clock_in_out.pack()
 
         # clock in button
-        self.ClockIn_Button = Button(frame, text="Clock In")
-        self.ClockIn_Button.pack(side=LEFT)
+        self.ClockIn_Button = Button(clock_in_out, text="Clock In", font=('Segoe UI Light', 16),  width = 10)
+        self.ClockIn_Button.pack(side=LEFT, padx=5, pady=10)
 
         # clock out button
-        self.ClockOut_Button = Button(frame, text="Clock Out", command = self.clockOut)
-        self.ClockOut_Button.pack(side=LEFT)
+        self.ClockOut_Button = Button(clock_in_out, text="Clock Out", font=('Segoe UI Light', 16),  width = 10, command = self.clockOut)
+        self.ClockOut_Button.pack(side=LEFT, padx=5, pady=10)
+
+        # back and quit frame
+        back_quit = Frame(bg="#2d2d2d")
+        back_quit.pack()
 
         # back button (goes back to main login screen)
-        self.Back_Button = Button(frame, text="Back", command=self.Back_Pushed)
-        self.Back_Button.pack(side=BOTTOM)
+        self.Back_Button = Button(back_quit, text="Back", font=('Segoe UI Light', 16),  width = 10, command=self.Back_Pushed)
+        self.Back_Button.pack(side=LEFT, padx=5, pady=50)
 
         # quit button
-        self.Quit_Button = Button(frame, text="Quit", command=frame.quit)
-        self.Quit_Button.pack(side=BOTTOM)
+        self.Quit_Button = Button(back_quit, text="Quit", font=('Segoe UI Light', 16),  width = 10 ,command=frame.quit)
+        self.Quit_Button.pack(side=LEFT, padx=5, pady=50)
 
     def Back_Pushed(self):
         destroyDisplay()
@@ -166,18 +208,18 @@ class StaffWindow():
         destroyDisplay()
         frame = Frame()
         frame.pack()
-        root.geometry("150x100")  
+        root.geometry("150x100")
         header = Label(frame,text = "Enter Pin to Clock Out")
         header.grid(row = 1, column = 1, ipadx = "10")
         pin_field = Entry(frame)
         pin_field.grid(row = 2, column = 1, ipadx = "10")
         timestr = time.strftime("%Y %m %d- %H %M %S")
-        
+
         def submit():
             pin = pin_field.get()
             if(pin != ""):
-                clockOutFile = open(pin + ".txt","a+")   
-                clockOutFile.write("\nOut " + timestr) 
+                clockOutFile = open(pin + ".txt","a+")
+                clockOutFile.write("\nOut " + timestr)
                 clockOutFile.close
                 destroyDisplay()
                 mywindow=MainWindow(root)
@@ -185,5 +227,6 @@ class StaffWindow():
         self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
 
 root = Tk()
+root.configure(bg = "#2d2d2d") #changes background color of window
 mywindow = MainWindow(root)
 root.mainloop()
