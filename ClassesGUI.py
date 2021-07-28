@@ -2,7 +2,6 @@
 from tkinter import *
 from tkinter import messagebox
 import time
-import pandas as pd
 import sqlite3
 
 def destroyDisplay(): #clears the entire window
