@@ -1,6 +1,0 @@
-# Kitchen-Management
-Kitchen manager software for managing orders, inventory, and tables
-
-Test update
-Test update 2
-TeSt UpDaTe 3
