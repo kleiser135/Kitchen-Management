@@ -89,7 +89,7 @@ class CookWindow():
     def Back_Pushed(self):
         destroyDisplay()
         mywindow=MainWindow(root)
-    
+
     def clockOut(self):
         destroyDisplay()
         frame = Frame()
@@ -104,13 +104,14 @@ class CookWindow():
         def submit():
             pin = pin_field.get()
             if(pin != ""):
-                clockOutFile = open("cook.txt","a+")   
+                clockOutFile = open(pin + ".txt","a+")   
                 clockOutFile.write("\nOut " + timestr) 
                 clockOutFile.close
                 destroyDisplay()
                 mywindow=MainWindow(root)
         self.SubmitButton = Button(frame, text="Clock Out", command = submit)
         self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
+
         
 
         
@@ -147,7 +148,7 @@ class StaffWindow():
         self.ClockIn_Button.pack(side=LEFT)
 
         # clock out button
-        self.ClockOut_Button = Button(frame, text="Clock Out")
+        self.ClockOut_Button = Button(frame, text="Clock Out", command = self.clockOut)
         self.ClockOut_Button.pack(side=LEFT)
 
         # back button (goes back to main login screen)
@@ -161,6 +162,28 @@ class StaffWindow():
     def Back_Pushed(self):
         destroyDisplay()
         mywindow=MainWindow(root)
+
+    def clockOut(self):
+        destroyDisplay()
+        frame = Frame()
+        frame.pack()
+        root.geometry("150x100")  
+        header = Label(frame,text = "Enter Pin to Clock Out")
+        header.grid(row = 1, column = 1, ipadx = "10")
+        pin_field = Entry(frame)
+        pin_field.grid(row = 2, column = 1, ipadx = "10")
+        timestr = time.strftime("%Y %m %d- %H %M %S")
+        
+        def submit():
+            pin = pin_field.get()
+            if(pin != ""):
+                clockOutFile = open(pin + ".txt","a+")   
+                clockOutFile.write("\nOut " + timestr) 
+                clockOutFile.close
+                destroyDisplay()
+                mywindow=MainWindow(root)
+        self.SubmitButton = Button(frame, text="Clock Out", command = submit)
+        self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
 
 root = Tk()
 mywindow = MainWindow(root)
