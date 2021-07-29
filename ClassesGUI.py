@@ -237,7 +237,7 @@ class ManagerWindow():
         root.geometry("1280x720+150+50")
 
         #staff menu label
-        self.Staff_Label = Label(text="Server Menu", font=('Segoe Script', 48), pady=50, bg="#2d2d2d", fg="#ffffff")
+        self.Staff_Label = Label(text="Manager Menu", font=('Segoe Script', 48), pady=50, bg="#2d2d2d", fg="#ffffff")
         self.Staff_Label.pack()
 
         #new table close tab frame
@@ -275,6 +275,10 @@ class ManagerWindow():
         # clock out button
         self.ClockOut_Button = Button(clock_in_out, text="Clock Out", font=('Segoe UI Light', 16),  width = 10, command = self.clockOut)
         self.ClockOut_Button.pack(side=LEFT, padx=5, pady=10)
+        
+        # manager functions button
+        self.ClockOut_Button = Button(clock_in_out, text="Clock Out", font=('Segoe UI Light', 16),  width = 10, command = self.clockOut)
+        self.ClockOut_Button.pack(side=LEFT, padx=5, pady=10)
 
         # back and quit frame
         back_quit = Frame(bg="#2d2d2d")
@@ -290,6 +294,39 @@ class ManagerWindow():
 
     
     #Put Functions Under This Comment
+    
+    def showMenu():
+        print("Manager Menu")
+    print("1) clock in")
+    print("2) new table")
+    print("3) get check")
+    print("4) close tab")
+    print("5) clock out")
+    print("q) exit\n")
+
+    def managerMenu(choice):
+        while True:
+
+            if choice == '1':
+                # clock in function
+                print("")
+            elif choice == '2':
+                # new table
+                print("")
+            elif choice == '3':
+                # get check
+                print("")
+            elif choice == '4':
+                # close tab
+                print("")
+            elif choice == '5':
+                # clock out
+                print("")
+            elif choice == 'q':
+                # quit manager menu
+                return
+            else:
+                print("")
     def Back_Pushed(self):
         destroyDisplay()
         mywindow=MainWindow(root)
