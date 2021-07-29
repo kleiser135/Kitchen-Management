@@ -62,7 +62,8 @@ class MainWindow():
             staffwindow=StaffWindow() #calls staffwindow class widgets
         elif userPIN == "manager":
             print("successfully logged in as a manager")
-            managerwindow=Cla
+            destroyDisplay()
+            managerwindow=ManagerWindow()
         else:
             print("Wrong PIN")
 
