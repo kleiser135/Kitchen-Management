@@ -1,63 +1,89 @@
+import csv
 from tkinter import *
+from tkinter import messagebox
+
 import tksheet
 
-def destroyDisplay(root): #clears the entire window
-    for widget in root.winfo_children(): #winfo_children returns a list of all widgets which are children of this widget.
-        widget.destroy() #destory all widgets
+def destroyDisplay(root):  # clears the entire window
+    for widget in root.winfo_children():  # winfo_children returns a list of all widgets which are children of this widget.
+        widget.destroy()  # destory all widgets
+
 
 class MenuEdit():
 
-    def __init__(self, root=None):
+    def __init__(self, root=None, manager_window=None):
+        self.root = root
+        self.managerWindow = manager_window
         destroyDisplay(root)
         frame = Frame(root)
         frame.pack()
         root.geometry("1280x720+150+50")
 
-        add_menu_frame=Frame(root,bg = "#2d2d2d")
+        add_menu_frame = Frame(root, bg="#2d2d2d")
         add_menu_frame.pack()
 
-        frame2 = Frame(root)
-        frame2.pack()
+        hint_frame = Frame(root)
+        hint_frame.pack()
+
+        sheet_frame = Frame(root,pady=5)
+        sheet_frame.pack()
 
         # cook menu label
-        label = Label(frame, text="Menu Edits", font=('Segoe Script', 48), pady=30, bg = "#2d2d2d", fg="#ffffff")
+        label = Label(frame, text="Menu Edits", font=('Segoe Script', 48), pady=20, bg="#2d2d2d", fg="#ffffff")
         label.pack()
 
-        #clock in button
-        AddMenuButton = Button(add_menu_frame, text="Add Menu Item", font=('Segoe UI Light', 16),  width = 20)
-        AddMenuButton.pack(side=LEFT, padx=5, pady=20)
+        add_menu_button = Button(add_menu_frame, text="Add New Item Entry", font=('Segoe UI Light', 16), width=15)
+        add_menu_button.pack(side=LEFT, padx=5, pady=10)
 
+        save_entries_button = Button(add_menu_frame, text="Save Menu", font=('Segoe UI Light', 16), width=12)
+        save_entries_button.pack(side=RIGHT, padx=5, pady=10)
 
-        sheet = tksheet.Sheet(frame2)
+        label = Label(hint_frame, text="* Right click on row selector for more options, double click for edit"
+                                       , font=('Segoe Script', 11),
+                      pady=15, bg="#2d2d2d", fg="#aaaaaa")
+        label.pack()
+
+        sheet = tksheet.Sheet(sheet_frame, width=645, height=400, show_x_scrollbar=False)
         sheet.grid()
-        sheet.headers(["Item Name","Item Category","Item price"])
-        sheet.set_sheet_data([[f"{ri + cj}" for cj in range(3)] for ri in range(2)])
+        sheet.headers(["Item Number", "Item Name", "Item Category", "Item price ($)", "Stock"])
+        read_menu_from_file(sheet)
+        sheet.enable_bindings()
+        add_menu_button.bind("<Button>", lambda e: add_menu_action(sheet))
+        save_entries_button.bind("<ButtonRelease>", lambda e: save_menu_action(sheet,e))
 
-        sheet.enable_bindings((
-                        "single_select",
+        back_quit_frame = Frame(root, bg="#2d2d2d", pady=15)
+        back_quit_frame.pack()
 
-                       "row_select",
+        back_button = Button(back_quit_frame, text="Back", font=('Segoe UI Light', 16), width=15,
+                             command=self.back_to_manager_window)
+        back_button.pack(side=LEFT, padx=5)
 
-                       "column_width_resize",
+        quit_button = Button(back_quit_frame, text="Quit", font=('Segoe UI Light', 16), width=15, command=root.quit)
+        quit_button.pack(side=LEFT, padx=5)
 
-                       "arrowkeys",
+    def back_to_manager_window(self):
+        destroyDisplay(self.root)
+        self.managerWindow.display_window()
 
-                       "right_click_popup_menu",
 
-                       "rc_select",
+def read_menu_from_file(sheet):
+    with open('menu.csv', 'r') as f:
+        reader=csv.reader(f)
+        next(reader)
+        for row in reader:
+            sheet.insert_row(row)
 
-                       "rc_insert_row",
 
-                       "rc_delete_row",
+def add_menu_action(sheet):
+    sheet.insert_row()
+    sheet.redraw()
 
-                       "copy",
 
-                       "cut",
+def save_menu_action(sheet,e):
+    with open('menu.csv', 'w') as f:
+        writer=csv.writer(f)
+        writer.writerow(sheet.headers())
+        writer.writerows(sheet.get_sheet_data())
+        messagebox.showinfo("Save Menu", "Menu saved successfully")
 
-                       "paste",
 
-                       "delete",
-
-                       "undo",
-
-                       "edit_cell"))

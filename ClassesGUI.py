@@ -238,8 +238,12 @@ class StaffWindow():
 
 # Manager window for GUI
 class ManagerWindow():
+
     def __init__(self):
-        frame = Frame()
+        self.display_window()
+
+    def display_window(self):
+        frame = Frame(root)
         frame.pack()
         root.geometry("1280x720+150+50")
 
@@ -248,12 +252,12 @@ class ManagerWindow():
         self.Staff_Label.pack()
 
         # new table close tab frame
-        new_close_frame = Frame(bg="#2d2d2d")
+        new_close_frame = Frame(root, bg="#2d2d2d")
         new_close_frame.pack()
 
         # new table button
         self.MenuEdit_Button = Button(new_close_frame, text="Menu Edits", font=('Segoe UI Light', 16), width=10)
-        self.MenuEdit_Button.bind("<Button>", lambda e: MenuEdit(root))
+        self.MenuEdit_Button.bind("<Button>", lambda e: MenuEdit(root, self))
         self.MenuEdit_Button.pack(side=LEFT, padx=5, pady=10)
 
         # new table button
@@ -265,7 +269,7 @@ class ManagerWindow():
         self.CloseTab_Button.pack(side=LEFT, padx=5, pady=10)
 
         # get check,check out frame
-        get_out_check = Frame(bg="#2d2d2d")
+        get_out_check = Frame(root, bg="#2d2d2d")
         get_out_check.pack()
 
         # get check button
@@ -276,13 +280,13 @@ class ManagerWindow():
         self.CheckOut_Button = Button(get_out_check, text="Check Out", font=('Segoe UI Light', 16), width=10)
         self.CheckOut_Button.pack(side=LEFT, padx=5, pady=10)
 
-        # clock in out frame
-        clock_in_out = Frame(bg="#2d2d2d")
-        clock_in_out.pack()
-
         # clock in button
-        self.ClockIn_Button = Button(clock_in_out, text="Clock In", font=('Segoe UI Light', 16), width=10)
+        self.ClockIn_Button = Button(get_out_check, text="Clock In", font=('Segoe UI Light', 16), width=10)
         self.ClockIn_Button.pack(side=LEFT, padx=5, pady=10)
+
+        # clock in out frame
+        clock_in_out = Frame(root, bg="#2d2d2d")
+        clock_in_out.pack()
 
         # clock out button
         self.ClockOut_Button = Button(clock_in_out, text="Clock Out", font=('Segoe UI Light', 16), width=10,
@@ -295,7 +299,7 @@ class ManagerWindow():
         self.ClockOut_Button.pack(side=LEFT, padx=5, pady=10)
 
         # back and quit frame
-        back_quit = Frame(bg="#2d2d2d")
+        back_quit = Frame(root, bg="#2d2d2d")
         back_quit.pack()
 
         # back button (goes back to main login screen)
