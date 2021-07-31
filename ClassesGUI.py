@@ -120,10 +120,10 @@ class CookWindow():
 
     def clockOut(self):
         destroyDisplay()
-        frame = Frame()
+        frame = Frame(bg = "#2d2d2d")
         frame.pack()
-        root.geometry("150x100")
-        header = Label(frame,text = "Enter Pin to Clock Out")
+        root.geometry("250x100+700+300")
+        header = Label(frame,text = "Enter Pin to Clock Out", font=('Segoe UI Light', 16), bg = "#2d2d2d", fg="#ffffff")
         header.grid(row = 1, column = 1, ipadx = "10")
         pin_field = Entry(frame)
         pin_field.grid(row = 2, column = 1, ipadx = "10")
@@ -137,7 +137,7 @@ class CookWindow():
                 clockOutFile.close
                 destroyDisplay()
                 mywindow=MainWindow(root)
-        self.SubmitButton = Button(frame, text="Clock Out", command = submit)
+        self.SubmitButton = Button(frame, text="Clock Out",font=('Segoe UI Light', 12), command = submit)
         self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
 
 
@@ -210,10 +210,10 @@ class StaffWindow():
 
     def clockOut(self):
         destroyDisplay()
-        frame = Frame()
+        frame = Frame(bg = "#2d2d2d")
         frame.pack()
-        root.geometry("150x100")
-        header = Label(frame,text = "Enter Pin to Clock Out")
+        root.geometry("250x100+700+300")
+        header = Label(frame,text = "Enter Pin to Clock Out", font=('Segoe UI Light', 16), bg = "#2d2d2d", fg="#ffffff")
         header.grid(row = 1, column = 1, ipadx = "10")
         pin_field = Entry(frame)
         pin_field.grid(row = 2, column = 1, ipadx = "10")
@@ -227,7 +227,7 @@ class StaffWindow():
                 clockOutFile.close
                 destroyDisplay()
                 mywindow=MainWindow(root)
-        self.SubmitButton = Button(frame, text="Clock Out", command = submit)
+        self.SubmitButton = Button(frame, text="Clock Out", font=('Segoe UI Light', 12), command = submit)
         self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
 
 #Manager window for GUI
@@ -334,10 +334,10 @@ class ManagerWindow():
 
     def clockOut(self):
         destroyDisplay()
-        frame = Frame()
+        frame = Frame(bg = "#2d2d2d")
         frame.pack()
-        root.geometry("150x100")
-        header = Label(frame,text = "Enter Pin to Clock Out")
+        root.geometry("250x100+700+300")
+        header = Label(frame,text = "Enter Pin to Clock Out", font=('Segoe UI Light', 16), bg = "#2d2d2d", fg="#ffffff")
         header.grid(row = 1, column = 1, ipadx = "10")
         pin_field = Entry(frame)
         pin_field.grid(row = 2, column = 1, ipadx = "10")
@@ -351,7 +351,7 @@ class ManagerWindow():
                 clockOutFile.close
                 destroyDisplay()
                 mywindow=MainWindow(root)
-        self.SubmitButton = Button(frame, text="Clock Out", command = submit)
+        self.SubmitButton = Button(frame, text="Clock Out", font=('Segoe UI Light', 12), command = submit)
         self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
 
 root = Tk()
