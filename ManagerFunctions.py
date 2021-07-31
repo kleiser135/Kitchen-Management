@@ -1,4 +1,5 @@
 import csv
+import os
 from tkinter import *
 from tkinter import messagebox
 
@@ -140,10 +141,16 @@ class MenuEdit:
 
 def read_menu_from_file(sheet):
     with open('menu.csv', 'r') as f:
-        reader=csv.reader(f)
-        next(reader)
-        for row in reader:
-            sheet.insert_row(row)
+        f.seek(0, os.SEEK_END)  # go to end of file
+        if f.tell():  # if current position is truish (i.e != 0)
+            f.seek(0)  # rewind the file for later use
+            reader = csv.reader(f)
+            next(reader)
+            for row in reader:
+                sheet.insert_row(row)
+
+        else: #File is empty
+            sheet.insert_row()
 
 
 def add_menu_action(sheet):
