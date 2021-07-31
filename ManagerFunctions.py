@@ -4,16 +4,88 @@ from tkinter import messagebox
 
 import tksheet
 
+
 def destroyDisplay(root):  # clears the entire window
     for widget in root.winfo_children():  # winfo_children returns a list of all widgets which are children of this widget.
         widget.destroy()  # destory all widgets
 
 
-class MenuEdit():
+# Manager Functions for GUI
+class ManagerFunctions:
 
-    def __init__(self, root=None, manager_window=None):
+    def __init__(self,root=None,managerWindow=None):
+        destroyDisplay(root)
+        self.root=root
+        self.managerWindow = managerWindow
+        self.display_window()
+
+    def display_window(self):
+        frame = Frame(self.root)
+        frame.pack()
+        self.root.geometry("1280x720+150+50")
+
+        # staff menu label
+        self.Staff_Label = Label(text="Manager Functions", font=('Segoe Script', 48), pady=50, bg="#2d2d2d", fg="#ffffff")
+        self.Staff_Label.pack()
+
+        # new table close tab frame
+        row1Frame = Frame(self.root, bg="#2d2d2d")
+        row1Frame.pack()
+
+        # new table button
+        self.MenuEdit_Button = Button(row1Frame, text="Menu Edits", font=('Segoe UI Light', 16), width=10)
+        self.MenuEdit_Button.bind("<Button>", lambda e: MenuEdit(self.root, self))
+        self.MenuEdit_Button.pack(side=LEFT, padx=5, pady=10)
+
+        # new table button
+        self.Track_Inventory_Button = Button(row1Frame, text="Track Inventory", font=('Segoe UI Light', 16), width=10)
+        self.Track_Inventory_Button.pack(side=LEFT, padx=5, pady=10)
+
+        # close tab button
+        self.Items_86_Buttons = Button(row1Frame, text="86 Items", font=('Segoe UI Light', 16), width=10)
+        self.Items_86_Buttons.pack(side=LEFT, padx=5, pady=10)
+
+        # get check,check out frame
+        row2Frame = Frame(self.root, bg="#2d2d2d")
+        row2Frame.pack()
+
+        # get check button
+        self.Orders_History_Button = Button(row2Frame, text="Order History", font=('Segoe UI Light', 16), width=10)
+        self.Orders_History_Button.pack(side=LEFT, padx=5, pady=10)
+
+        # check out button
+        self.CheckOut_Button = Button(row2Frame, text="Manager Message", font=('Segoe UI Light', 16), width=10)
+        self.CheckOut_Button.pack(side=LEFT, padx=5, pady=10)
+
+        # clock in button
+        self.ClockIn_Button = Button(row2Frame, text="Comps & Discounts", font=('Segoe UI Light', 16), width=10)
+        self.ClockIn_Button.pack(side=LEFT, padx=5, pady=10)
+
+        # back and quit frame
+        back_quit = Frame(self.root, bg="#2d2d2d")
+        back_quit.pack()
+
+        # back button (goes back to main login screen)
+        self.Back_Button = Button(back_quit, text="Back", font=('Segoe UI Light', 16), width=10,
+                                  command=self.Back_Pushed)
+        self.Back_Button.pack(side=LEFT, padx=5, pady=50)
+
+        # quit button
+        self.Quit_Button = Button(back_quit, text="Quit", font=('Segoe UI Light', 16), width=10, command=frame.quit)
+        self.Quit_Button.pack(side=LEFT, padx=5, pady=50)
+
+    # Put Functions Under This Comment
+
+    def Back_Pushed(self):
+        destroyDisplay()
+        self.managerWindow.display_window()
+
+
+class MenuEdit:
+
+    def __init__(self, root=None, manager_functions_window=None):
         self.root = root
-        self.managerWindow = manager_window
+        self.manager_functions_window = manager_functions_window
         destroyDisplay(root)
         frame = Frame(root)
         frame.pack()
@@ -55,15 +127,15 @@ class MenuEdit():
         back_quit_frame.pack()
 
         back_button = Button(back_quit_frame, text="Back", font=('Segoe UI Light', 16), width=15,
-                             command=self.back_to_manager_window)
+                             command=self.back_to_manager_functions_window)
         back_button.pack(side=LEFT, padx=5)
 
         quit_button = Button(back_quit_frame, text="Quit", font=('Segoe UI Light', 16), width=15, command=root.quit)
         quit_button.pack(side=LEFT, padx=5)
 
-    def back_to_manager_window(self):
+    def back_to_manager_functions_window(self):
         destroyDisplay(self.root)
-        self.managerWindow.display_window()
+        self.manager_functions_window.display_window()
 
 
 def read_menu_from_file(sheet):
