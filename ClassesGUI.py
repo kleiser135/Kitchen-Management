@@ -4,7 +4,7 @@ from tkinter import messagebox
 import time
 import sqlite3
 
-from ManagerFunctions import MenuEdit
+from ManagerFunctions import MenuEdit, ManagerFunctions
 
 
 def destroyDisplay():  # clears the entire window
@@ -256,8 +256,8 @@ class ManagerWindow():
         new_close_frame.pack()
 
         # new table button
-        self.MenuEdit_Button = Button(new_close_frame, text="Menu Edits", font=('Segoe UI Light', 16), width=10)
-        self.MenuEdit_Button.bind("<Button>", lambda e: MenuEdit(root, self))
+        self.MenuEdit_Button = Button(new_close_frame, text="Manager Functions", font=('Segoe UI Light', 16), width=15)
+        self.MenuEdit_Button.bind("<Button>", lambda e: ManagerFunctions(root, self))
         self.MenuEdit_Button.pack(side=LEFT, padx=5, pady=10)
 
         # new table button
@@ -313,7 +313,7 @@ class ManagerWindow():
 
     # Put Functions Under This Comment
 
-    def showMenu():
+    def showMenu(self):
         print("Manager Menu")
 
     print("1) clock in")
