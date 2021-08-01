@@ -83,7 +83,7 @@ class CookWindow():
         clock_frame.pack()
 
         #clock in button
-        self.ClockIn_Button = Button(clock_frame, text="Clock In", font=('Segoe UI Light', 16),  width = 10)
+        self.ClockIn_Button = Button(clock_frame, text="Clock In", font=('Segoe UI Light', 16),  width = 10, command=self.clockIn)
         self.ClockIn_Button.pack(side=LEFT, padx=5, pady=10)
 
         # clock out button
@@ -139,6 +139,28 @@ class CookWindow():
                 mywindow=MainWindow(root)
         self.SubmitButton = Button(frame, text="Clock Out",font=('Segoe UI Light', 12), command = submit)
         self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
+    
+    def clockIn(self):
+        destroyDisplay()
+        frame = Frame(bg = "#2d2d2d")
+        frame.pack()
+        root.geometry("250x100+700+300")
+        header = Label(frame,text = "Enter Pin to Clock In", font=('Segoe UI Light', 16), bg = "#2d2d2d", fg="#ffffff")
+        header.grid(row = 1, column = 1, ipadx = "10")
+        pin_field = Entry(frame)
+        pin_field.grid(row = 2, column = 1, ipadx = "10")
+        timestr = time.strftime("%Y %m %d- %H %M %S")
+
+        def submit():
+            pin = pin_field.get()
+            if(pin != ""):
+                clockOutFile = open(pin + ".txt","a+")
+                clockOutFile.write("\nIn " + timestr)
+                clockOutFile.close
+                destroyDisplay()
+                mywindow=MainWindow(root)
+        self.SubmitButton = Button(frame, text="Clock In", font=('Segoe UI Light', 12), command = submit)
+        self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
 
 
 
@@ -185,7 +207,7 @@ class StaffWindow():
         clock_in_out.pack()
 
         # clock in button
-        self.ClockIn_Button = Button(clock_in_out, text="Clock In", font=('Segoe UI Light', 16),  width = 10)
+        self.ClockIn_Button = Button(clock_in_out, text="Clock In", font=('Segoe UI Light', 16),  width = 10, command = self.clockIn)
         self.ClockIn_Button.pack(side=LEFT, padx=5, pady=10)
 
         # clock out button
@@ -230,6 +252,28 @@ class StaffWindow():
         self.SubmitButton = Button(frame, text="Clock Out", font=('Segoe UI Light', 12), command = submit)
         self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
 
+    def clockIn(self):
+        destroyDisplay()
+        frame = Frame(bg = "#2d2d2d")
+        frame.pack()
+        root.geometry("250x100+700+300")
+        header = Label(frame,text = "Enter Pin to Clock In", font=('Segoe UI Light', 16), bg = "#2d2d2d", fg="#ffffff")
+        header.grid(row = 1, column = 1, ipadx = "10")
+        pin_field = Entry(frame)
+        pin_field.grid(row = 2, column = 1, ipadx = "10")
+        timestr = time.strftime("%Y %m %d- %H %M %S")
+
+        def submit():
+            pin = pin_field.get()
+            if(pin != ""):
+                clockOutFile = open(pin + ".txt","a+")
+                clockOutFile.write("\nIn " + timestr)
+                clockOutFile.close
+                destroyDisplay()
+                mywindow=MainWindow(root)
+        self.SubmitButton = Button(frame, text="Clock In", font=('Segoe UI Light', 12), command = submit)
+        self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
+
 #Manager window for GUI
 class ManagerWindow():
     def __init__(self):
@@ -270,13 +314,13 @@ class ManagerWindow():
         clock_in_out.pack()
 
         # clock in button
-        self.ClockIn_Button = Button(clock_in_out, text="Clock In", font=('Segoe UI Light', 16),  width = 10)
+        self.ClockIn_Button = Button(clock_in_out, text="Clock In", font=('Segoe UI Light', 16),  width = 10,  command = self.clockIn)
         self.ClockIn_Button.pack(side=LEFT, padx=5, pady=10)
 
         # clock out button
         self.ClockOut_Button = Button(clock_in_out, text="Clock Out", font=('Segoe UI Light', 16),  width = 10, command = self.clockOut)
         self.ClockOut_Button.pack(side=LEFT, padx=5, pady=10)
-        
+
         # manager functions button
         self.ClockOut_Button = Button(clock_in_out, text="Clock Out", font=('Segoe UI Light', 16),  width = 10, command = self.clockOut)
         self.ClockOut_Button.pack(side=LEFT, padx=5, pady=10)
@@ -293,9 +337,15 @@ class ManagerWindow():
         self.Quit_Button = Button(back_quit, text="Quit", font=('Segoe UI Light', 16),  width = 10 ,command=frame.quit)
         self.Quit_Button.pack(side=LEFT, padx=5, pady=50)
 
-    
+
+
+
+
+
+
+
     #Put Functions Under This Comment
-    
+
     def showMenu():
         print("Manager Menu")
     print("1) clock in")
@@ -353,6 +403,32 @@ class ManagerWindow():
                 mywindow=MainWindow(root)
         self.SubmitButton = Button(frame, text="Clock Out", font=('Segoe UI Light', 12), command = submit)
         self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
+
+    def clockIn(self):
+        destroyDisplay()
+        frame = Frame(bg = "#2d2d2d")
+        frame.pack()
+        root.geometry("250x100+700+300")
+        header = Label(frame,text = "Enter Pin to Clock In", font=('Segoe UI Light', 16), bg = "#2d2d2d", fg="#ffffff")
+        header.grid(row = 1, column = 1, ipadx = "10")
+        pin_field = Entry(frame)
+        pin_field.grid(row = 2, column = 1, ipadx = "10")
+        timestr = time.strftime("%Y %m %d- %H %M %S")
+
+        def submit():
+            pin = pin_field.get()
+            if(pin != ""):
+                clockOutFile = open(pin + ".txt","a+")
+                clockOutFile.write("\nIn " + timestr)
+                clockOutFile.close
+                destroyDisplay()
+                mywindow=MainWindow(root)
+        self.SubmitButton = Button(frame, text="Clock In", font=('Segoe UI Light', 12), command = submit)
+        self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
+
+
+
+
 
 root = Tk()
 root.configure(bg = "#2d2d2d") #changes background color of window
