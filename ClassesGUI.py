@@ -158,7 +158,7 @@ class CookWindow():
                 clockOutFile.write("\nIn " + timestr)
                 clockOutFile.close
                 destroyDisplay()
-                mywindow=MainWindow(root)
+                cookwindow=CookWindow()
         self.SubmitButton = Button(frame, text="Clock In", font=('Segoe UI Light', 12), command = submit)
         self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
 
@@ -270,7 +270,7 @@ class StaffWindow():
                 clockOutFile.write("\nIn " + timestr)
                 clockOutFile.close
                 destroyDisplay()
-                mywindow=MainWindow(root)
+                staffwindow=StaffWindow()
         self.SubmitButton = Button(frame, text="Clock In", font=('Segoe UI Light', 12), command = submit)
         self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
 
@@ -422,7 +422,7 @@ class ManagerWindow():
                 clockOutFile.write("\nIn " + timestr)
                 clockOutFile.close
                 destroyDisplay()
-                mywindow=MainWindow(root)
+                managerwindow=ManagerWindow()
         self.SubmitButton = Button(frame, text="Clock In", font=('Segoe UI Light', 12), command = submit)
         self.SubmitButton.grid(row = 3, column = 1, ipadx = "10")
 
