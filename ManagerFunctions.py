@@ -2,8 +2,9 @@ import csv
 import os
 from tkinter import *
 from tkinter import messagebox
-
+import base64
 import tksheet
+import six
 
 
 def destroyDisplay(root):  # clears the entire window
@@ -63,6 +64,11 @@ class ManagerFunctions:
         # clock in button
         self.Comps_Discount_Button = Button(row2Frame, text="Comps & Discounts", font=('Segoe UI Light', 16), width=15)
         self.Comps_Discount_Button.pack(side=LEFT, padx=5, pady=10)
+        
+        # create pin button
+        self.Create_Pin_Button = Button(row2Frame, text = "Create Pin", font=('Segoe UI Light', 16), width=10,
+                                        command=self.create_Pin)
+        self.Create_Pin_Button.pack(side=LEFT, padx=5, pady=10)
 
         # back and quit frame
         back_quit = Frame(self.root, bg="#2d2d2d")
@@ -78,6 +84,74 @@ class ManagerFunctions:
         self.Quit_Button.pack(side=LEFT, padx=5, pady=50)
 
     # Put Functions Under This Comment
+
+        
+
+
+    def create_Pin(self):
+        destroyDisplay(self.root)
+        frame = Frame(self.root)
+        frame.pack()
+        self.root.geometry("1280x720+150+50")
+        header = Label(frame, text="Create a pin", font=('Segoe UI Light', 16), bg="#2d2d2d", fg="#ffffff")
+        header.grid(row=1, column=1, ipadx="10")
+        pin_field = Entry(frame)
+        
+        managerVar = IntVar()
+        staffVar = IntVar()
+        cookVar = IntVar()
+        Checkbutton(frame,text="manager",variable=managerVar).grid(row=4, column=1)
+        Checkbutton(frame,text="staff",variable=staffVar).grid(row=4, column=2)
+        Checkbutton(frame,text="cook",variable=cookVar).grid(row=4, column=3)
+        
+        def encode(key, string):
+            encoded_chars = []
+            for i in range(len(string)):
+                key_c = key[i % len(key)]
+                encoded_c = chr(ord(string[i]) + ord(key_c) % 256)
+                encoded_chars.append(encoded_c)
+            encoded_string = ''.join(encoded_chars)
+            encoded_string = encoded_string.encode('latin') if six.PY3 else encoded_string
+            return base64.urlsafe_b64encode(encoded_string).rstrip(b'=')      
+
+        
+        def back_to_manager_functions_window(self):
+            destroyDisplay(self.root)
+            self.managerWindow.display_window()
+            
+        def submit():
+            if(managerVar.get() == 1 and staffVar.get() == 0 and cookVar.get() == 0):
+                print('manager created')
+                f = open("managers.txt","ab+")
+                f.write(encode('manager',pin_field.get()) + b'\n')
+                f.close()
+            elif(managerVar.get() == 0 and staffVar.get() == 1 and cookVar.get() == 0):
+                print('staff')
+                f = open("staff.txt","ab+")
+                f.write(encode('staff',pin_field.get()) + b'\n')
+                f.close()
+            elif(managerVar.get() == 0 and staffVar.get() == 0 and cookVar.get() == 1):
+                print('cook')
+                f = open("cook.txt","ab+")
+                f.write(encode('cook',pin_field.get()) + b'\n')
+                f.close()
+            else:
+                messagebox.showerror('Error','Only choose one box')
+            print('done')
+            back_to_manager_functions_window(self)
+
+        # pin enterance    
+        pin_field.grid(row=2, column=1, ipadx="10")
+        
+        # submit manager button
+        Add_Account_Button = Button(frame, text="Add Pin", font=('Segoe UI Light', 16), width=10, command=submit)
+        Add_Account_Button.grid(row=3, column=1, ipadx="10")
+        
+
+
+
+
+        
 
     def Back_Pushed(self):
         destroyDisplay(self.root)

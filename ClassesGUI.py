@@ -4,6 +4,8 @@ from tkinter import messagebox
 import time
 import sqlite3
 from datetime import datetime
+import base64
+import six
 
 from ManagerFunctions import MenuEdit, ManagerFunctions
 
@@ -49,7 +51,64 @@ class MainWindow():
         self.Quit_Button.pack(side=LEFT, padx=5, pady=20)
 
     # functions
+    
+    
+
+    
     def Login(self):
+        def encode(key, string):
+            encoded_chars = []
+            for i in range(len(string)):
+                key_c = key[i % len(key)]
+                encoded_c = chr(ord(string[i]) + ord(key_c) % 256)
+                encoded_chars.append(encoded_c)
+            encoded_string = ''.join(encoded_chars)
+            encoded_string = encoded_string.encode('latin') if six.PY3 else encoded_string
+            return base64.urlsafe_b64encode(encoded_string).rstrip(b'=')    
+        
+        def decode(key, string):
+            string = base64.urlsafe_b64decode(string + b'===')
+            string = string.decode('latin') if six.PY3 else string
+            encoded_chars = []
+            for i in range(len(string)):
+                key_c = key[i % len(key)]
+                encoded_c = chr((ord(string[i]) - ord(key_c) + 256) % 256)
+                encoded_chars.append(encoded_c)
+            encoded_string = ''.join(encoded_chars)
+            return encoded_string
+        
+        def search(pin):
+            
+            found = 0
+            with open("managers.txt","rb") as managerFile:
+                full_text1 = managerFile.read().splitlines()
+            with open("staff.txt","rb") as staffFile:
+                full_text2 = staffFile.read().splitlines()
+            with open("cook.txt","rb") as cookFile:
+                full_text3 = cookFile.read().splitlines()
+                
+            for text in full_text1:
+                print(encode('manager',pin))
+                if text == encode('manager',pin):
+                    print("manager done")
+                    found = 1
+            
+            
+            for text2 in full_text2:
+                print(encode('staff',pin))
+                if text2 == encode('staff',pin):
+                    print("staff done")
+                    found = 2
+            
+            for text3 in full_text3:
+                print(encode('cook',pin))
+                if text3 == encode('cook',pin):
+                    print("cook done")
+                    found = 3
+
+            return found
+        
+
         print("Login Button Pressed")
 
         userPIN = self.Pin_Entry.get()
@@ -57,16 +116,19 @@ class MainWindow():
             print("Nothing entered")
         else:
             print(userPIN)  # check to see if value is correct with what user enters
-
-        if userPIN == "cook":
+        print("This is return" + str(search(userPIN)))
+        if  userPIN == "admin":
+            destroyDisplay()
+            managerwindow = ManagerWindow()
+        elif search(userPIN) == 3:
             print("successfully logged in as a Cook")
             destroyDisplay()
             cookwindow = CookWindow()  # calls cookwindow class widgets
-        elif userPIN == "staff":
+        elif search(userPIN) == 2:
             print("successfully logged in as a Server")
             destroyDisplay()
             staffwindow = StaffWindow()  # calls staffwindow class widgets
-        elif userPIN == "manager":
+        elif search(userPIN) == 1:
             print("successfully logged in as a manager")
             destroyDisplay()
             managerwindow = ManagerWindow()
@@ -345,7 +407,6 @@ class StaffWindow():
         destroyDisplay()
         frame = Frame(bg="#2d2d2d")
         frame.pack()
-        root.geometry("250x100+700+300")
         header = Label(frame, text="Enter Pin to Clock In", font=('Segoe UI Light', 16), bg="#2d2d2d", fg="#ffffff")
         header.grid(row=1, column=1, ipadx="10")
         pin_field = Entry(frame)
