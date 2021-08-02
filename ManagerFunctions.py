@@ -78,7 +78,7 @@ class ManagerFunctions:
     # Put Functions Under This Comment
 
     def Back_Pushed(self):
-        destroyDisplay()
+        destroyDisplay(self.root)
         self.managerWindow.display_window()
 
 
