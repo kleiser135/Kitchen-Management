@@ -40,6 +40,7 @@ class ManagerFunctions:
 
         # new table button
         self.Track_Inventory_Button = Button(row1Frame, text="Track Inventory", font=('Segoe UI Light', 16), width=10)
+        self.Track_Inventory_Button.bind("<Button>", lambda e: TrackInventory(self.root, self))
         self.Track_Inventory_Button.pack(side=LEFT, padx=5, pady=10)
 
         # close tab button
@@ -55,12 +56,12 @@ class ManagerFunctions:
         self.Orders_History_Button.pack(side=LEFT, padx=5, pady=10)
 
         # check out button
-        self.CheckOut_Button = Button(row2Frame, text="Manager Message", font=('Segoe UI Light', 16), width=10)
-        self.CheckOut_Button.pack(side=LEFT, padx=5, pady=10)
+        self.Manager_Message_Button = Button(row2Frame, text="Manager Message", font=('Segoe UI Light', 16), width=15)
+        self.Manager_Message_Button.pack(side=LEFT, padx=5, pady=10)
 
         # clock in button
-        self.ClockIn_Button = Button(row2Frame, text="Comps & Discounts", font=('Segoe UI Light', 16), width=10)
-        self.ClockIn_Button.pack(side=LEFT, padx=5, pady=10)
+        self.Comps_Discount_Button = Button(row2Frame, text="Comps & Discounts", font=('Segoe UI Light', 16), width=15)
+        self.Comps_Discount_Button.pack(side=LEFT, padx=5, pady=10)
 
         # back and quit frame
         back_quit = Frame(self.root, bg="#2d2d2d")
@@ -119,10 +120,10 @@ class MenuEdit:
         sheet = tksheet.Sheet(sheet_frame, width=645, height=400, show_x_scrollbar=False)
         sheet.grid()
         sheet.headers(["Item Number", "Item Name", "Item Category", "Item price ($)", "Stock"])
-        read_menu_from_file(sheet)
+        read_menu_from_file(sheet,"menu.csv")
         sheet.enable_bindings()
         add_menu_button.bind("<Button>", lambda e: add_menu_action(sheet))
-        save_entries_button.bind("<ButtonRelease>", lambda e: save_menu_action(sheet,e))
+        save_entries_button.bind("<ButtonRelease>", lambda e: save_menu_action(sheet,"menu.csv"))
 
         back_quit_frame = Frame(root, bg="#2d2d2d", pady=15)
         back_quit_frame.pack()
@@ -139,8 +140,8 @@ class MenuEdit:
         self.manager_functions_window.display_window()
 
 
-def read_menu_from_file(sheet):
-    with open('menu.csv', 'r') as f:
+def read_menu_from_file(sheet,file_name):
+    with open(file_name, 'r') as f:
         f.seek(0, os.SEEK_END)  # go to end of file
         if f.tell():  # if current position is truish (i.e != 0)
             f.seek(0)  # rewind the file for later use
@@ -158,11 +159,68 @@ def add_menu_action(sheet):
     sheet.redraw()
 
 
-def save_menu_action(sheet,e):
-    with open('menu.csv', 'w') as f:
+def save_menu_action(sheet,file_name):
+    with open(file_name, 'w') as f:
         writer=csv.writer(f)
         writer.writerow(sheet.headers())
         writer.writerows(sheet.get_sheet_data())
         messagebox.showinfo("Save Menu", "Menu saved successfully")
+
+
+class TrackInventory:
+
+    def __init__(self, root=None, manager_functions_window=None):
+        self.root = root
+        self.manager_functions_window = manager_functions_window
+        destroyDisplay(root)
+        frame = Frame(root)
+        frame.pack()
+        root.geometry("1280x720+150+50")
+
+        add_menu_frame = Frame(root, bg="#2d2d2d")
+        add_menu_frame.pack()
+
+        hint_frame = Frame(root)
+        hint_frame.pack()
+
+        sheet_frame = Frame(root,pady=5)
+        sheet_frame.pack()
+
+        # cook menu label
+        label = Label(frame, text="Track Inventory", font=('Segoe Script', 48), pady=20, bg="#2d2d2d", fg="#ffffff")
+        label.pack()
+
+        add_menu_button = Button(add_menu_frame, text="Add New Inventory Item", font=('Segoe UI Light', 16), width=20)
+        add_menu_button.pack(side=LEFT, padx=5, pady=10)
+
+        save_entries_button = Button(add_menu_frame, text="Save Inventory", font=('Segoe UI Light', 16), width=15)
+        save_entries_button.pack(side=RIGHT, padx=5, pady=10)
+
+        label = Label(hint_frame, text="* Right click on row selector for more options, double click for edit"
+                                       , font=('Segoe Script', 11),
+                      pady=15, bg="#2d2d2d", fg="#aaaaaa")
+        label.pack()
+
+        sheet = tksheet.Sheet(sheet_frame, width=645, height=400, show_x_scrollbar=False)
+        sheet.grid()
+        sheet.headers(["Item Number", "Item Name", "Item Category", "Current Stock"])
+        read_menu_from_file(sheet,"inventory.csv")
+        sheet.enable_bindings()
+        add_menu_button.bind("<Button>", lambda e: add_menu_action(sheet))
+        save_entries_button.bind("<ButtonRelease>", lambda e: save_menu_action(sheet,"inventory.csv"))
+
+        back_quit_frame = Frame(root, bg="#2d2d2d", pady=15)
+        back_quit_frame.pack()
+
+        back_button = Button(back_quit_frame, text="Back", font=('Segoe UI Light', 16), width=15,
+                             command=self.back_to_manager_functions_window)
+        back_button.pack(side=LEFT, padx=5)
+
+        quit_button = Button(back_quit_frame, text="Quit", font=('Segoe UI Light', 16), width=15, command=root.quit)
+        quit_button.pack(side=LEFT, padx=5)
+
+    def back_to_manager_functions_window(self):
+        destroyDisplay(self.root)
+        self.manager_functions_window.display_window()
 
 
