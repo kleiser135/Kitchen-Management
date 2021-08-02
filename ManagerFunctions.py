@@ -45,6 +45,7 @@ class ManagerFunctions:
 
         # close tab button
         self.Items_86_Buttons = Button(row1Frame, text="86 Items", font=('Segoe UI Light', 16), width=10)
+        self.Items_86_Buttons.bind("<Button>", lambda e: Items86(self.root, self))
         self.Items_86_Buttons.pack(side=LEFT, padx=5, pady=10)
 
         # get check,check out frame
@@ -224,3 +225,60 @@ class TrackInventory:
         self.manager_functions_window.display_window()
 
 
+class Items86:
+
+    def __init__(self, root=None, manager_functions_window=None):
+        self.root = root
+        self.manager_functions_window = manager_functions_window
+        destroyDisplay(root)
+        frame = Frame(root)
+        frame.pack()
+        root.geometry("1280x720+150+50")
+
+        add_menu_frame = Frame(root, bg="#2d2d2d")
+        add_menu_frame.pack()
+
+        hint_frame = Frame(root)
+        hint_frame.pack()
+
+        sheet_frame = Frame(root,pady=5)
+        sheet_frame.pack()
+
+        # cook menu label
+        label = Label(frame, text="86 Items", font=('Segoe Script', 48), pady=20, bg="#2d2d2d", fg="#ffffff")
+        label.pack()
+
+        sheet = tksheet.Sheet(sheet_frame, width=645, height=400, show_x_scrollbar=False)
+        sheet.grid()
+        sheet.headers(["Item Number", "Item Name", "Item Category", "Current Stock"])
+        read_86_items_from_file(sheet)
+        # sheet.enable_bindings()
+
+        back_quit_frame = Frame(root, bg="#2d2d2d", pady=15)
+        back_quit_frame.pack()
+
+        back_button = Button(back_quit_frame, text="Back", font=('Segoe UI Light', 16), width=15,
+                             command=self.back_to_manager_functions_window)
+        back_button.pack(side=LEFT, padx=5)
+
+        quit_button = Button(back_quit_frame, text="Quit", font=('Segoe UI Light', 16), width=15, command=root.quit)
+        quit_button.pack(side=LEFT, padx=5)
+
+    def back_to_manager_functions_window(self):
+        destroyDisplay(self.root)
+        self.manager_functions_window.display_window()
+
+
+def read_86_items_from_file(sheet):
+    with open('inventory.csv', 'r') as f:
+        f.seek(0, os.SEEK_END)  # go to end of file
+        if f.tell():  # if current position is truish (i.e != 0)
+            f.seek(0)  # rewind the file for later use
+            reader = csv.DictReader(f)
+            for row in reader:
+                for (k, v) in row.items():
+                    if k == "Current Stock" and v == '0':
+                        sheet.insert_row(row.values())
+
+        else:  # File is empty
+            sheet.insert_row()
