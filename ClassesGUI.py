@@ -7,6 +7,7 @@ from datetime import datetime
 
 from ManagerFunctions import MenuEdit, ManagerFunctions
 
+tableList = [[1,True, True,[0],0],[2,True, True,[0],0],[3,True, True,[0],0],[4,True, True,[0],0],[5,True, True,[0],0],[6,True, True,[0],0]]
 
 def destroyDisplay():  # clears the entire window
     for widget in root.winfo_children():  # winfo_children returns a list of all widgets which are children of this widget.
@@ -258,7 +259,7 @@ class StaffWindow():
         new_close_frame.pack()
 
         # new table button
-        self.NewTable_Button = Button(new_close_frame, text="New Table", font=('Segoe UI Light', 16), width=10)
+        self.NewTable_Button = Button(new_close_frame, text="New Table", font=('Segoe UI Light', 16), width=10, command=self.newTable)
         self.NewTable_Button.pack(side=LEFT, padx=5, pady=10)
 
         # close tab button
@@ -371,7 +372,32 @@ class StaffWindow():
 
         self.SubmitButton = Button(frame, text="Clock In", font=('Segoe UI Light', 12), command=submit)
         self.SubmitButton.grid(row=3, column=1, ipadx="10")
+        
+    def newTable(self):
+        
 
+        destroyDisplay()
+        frame = Frame(bg="#2d2d2d")
+        frame.pack()
+        root.geometry("1280x720+150+50")
+        header = Label(frame, text="Enter Table Number", font=('Segoe UI Light', 16), bg="#2d2d2d", fg="#ffffff")
+        header.grid(row=1, column=1, ipadx="10")
+        pin_field = Entry(frame)
+        def submit():
+            if(tableList[int(pin_field.get())][1] == True ):
+                tableList[int(pin_field.get())][1] = False
+                tableList[int(pin_field.get())][2] = False
+                print("Table added")
+                print(tableList[int(pin_field.get())][1])
+                messagebox.showinfo('Success', 'Table added.')
+            elif(tableList[int(pin_field.get())][1] == False ):
+                messagebox.showerror('Taken', 'Table is already taken')
+                
+            destroyDisplay()
+            staffwindow = StaffWindow()
+        pin_field.grid(row=2, column=1, ipadx="10")
+        self.SubmitButton = Button(frame, text="New Table", font=('Segoe UI Light', 12), command=submit)
+        self.SubmitButton.grid(row=3, column=1, ipadx="10")
 
 # Manager window for GUI
 class ManagerWindow():
@@ -397,7 +423,7 @@ class ManagerWindow():
         self.MenuEdit_Button.pack(side=LEFT, padx=5, pady=10)
 
         # new table button
-        self.NewTable_Button = Button(new_close_frame, text="New Table", font=('Segoe UI Light', 16), width=10)
+        self.NewTable_Button = Button(new_close_frame, text="New Table", font=('Segoe UI Light', 16), width=10, command=self.newTable)
         self.NewTable_Button.pack(side=LEFT, padx=5, pady=10)
 
         # close tab button
@@ -545,6 +571,32 @@ class ManagerWindow():
                     print ("Manager must be clocked-out to clock-in")
 
         self.SubmitButton = Button(frame, text="Clock In", font=('Segoe UI Light', 12), command=submit)
+        self.SubmitButton.grid(row=3, column=1, ipadx="10")
+        
+    def newTable(self):
+        
+
+        destroyDisplay()
+        frame = Frame(bg="#2d2d2d")
+        frame.pack()
+        root.geometry("1280x720+150+50")
+        header = Label(frame, text="Enter Table Number", font=('Segoe UI Light', 16), bg="#2d2d2d", fg="#ffffff")
+        header.grid(row=1, column=1, ipadx="10")
+        pin_field = Entry(frame)
+        def submit():
+            if(tableList[int(pin_field.get())][1] == True ):
+                tableList[int(pin_field.get())][1] = False
+                tableList[int(pin_field.get())][2] = False
+                print("Table added")
+                print(tableList[int(pin_field.get())][1])
+                messagebox.showinfo('Success', 'Table added.')
+            elif(tableList[int(pin_field.get())][1] == False ):
+                messagebox.showerror('Taken', 'Table is already taken')
+                
+            destroyDisplay()
+            managerwindow = ManagerWindow()
+        pin_field.grid(row=2, column=1, ipadx="10")
+        self.SubmitButton = Button(frame, text="New Table", font=('Segoe UI Light', 12), command=submit)
         self.SubmitButton.grid(row=3, column=1, ipadx="10")
 
 
