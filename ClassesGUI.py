@@ -212,8 +212,9 @@ class CookWindow():
             pin = pin_field.get()
             if (pin != ""):
                 getClockState = open(pin + ".txt", "r")
-                isClockedIn = getClockState.read()
-                if isClockedIn == "IN":
+                isClockedIn = getClockState.readline()
+                print(isClockedIn)
+                if isClockedIn == "IN\n":
                     clockOutFile = open(pin + ".txt", "w")
                     clockOutFile.write(timestr)
                     clockOutFile.close
@@ -224,7 +225,7 @@ class CookWindow():
                     destroyDisplay()
                     mywindow = MainWindow(root)
                 else:
-                    print ("Staff must be clocked-in to clock-out")
+                    print ("Cook must be clocked-in to clock-out")
 
         self.SubmitButton = Button(frame, text="Clock Out", font=('Segoe UI Light', 12), command=submit)
         self.SubmitButton.grid(row=3, column=1, ipadx="10")
@@ -399,8 +400,9 @@ class StaffWindow():
             pin = pin_field.get()
             if (pin != ""):
                 getClockState = open(pin + ".txt", "r")
-                isClockedIn = getClockState.read()
-                if isClockedIn == "IN":
+                isClockedIn = getClockState.readline()
+                print(isClockedIn)
+                if isClockedIn == "IN\n":
                     clockOutFile = open(pin + ".txt", "a+")
                     clockOutFile.write("\nOut " + timestr)
                     clockOutFile.close
@@ -633,8 +635,9 @@ class ManagerWindow():
             if (pin != ""):
                 if(path.exists(pin + ".txt") == True):
                     getClockState = open(pin + ".txt", "r")
-                    isClockedIn = getClockState.read()
-                    if isClockedIn == "IN":
+                    isClockedIn = getClockState.readline()
+                    print(isClockedIn)
+                    if isClockedIn == "IN\n":
                         clockOutFile = open(pin + ".txt", "a+")
                         clockOutFile.write("\nOut " + timestr)
                         clockOutFile.close
@@ -698,7 +701,7 @@ class ManagerWindow():
                     destroyDisplay()
                     cookWindow = ManagerWindow()
                 else:
-                    print ("Cook must be clocked-out to clock-in")
+                    print ("Manager must be clocked-out to clock-in")
 
         self.SubmitButton = Button(frame, text="Clock In", font=('Segoe UI Light', 12), command=submit)
         self.SubmitButton.grid(row=3, column=1, ipadx="10")
