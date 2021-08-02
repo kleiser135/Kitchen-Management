@@ -71,6 +71,7 @@ class MainWindow():
             managerwindow = ManagerWindow()
         else:
             print("Wrong PIN")
+            messagebox.showerror("Wrong Pin", "Wrong pin entered. Try again.")
 
 
 class CookWindow():
