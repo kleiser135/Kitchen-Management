@@ -6,6 +6,8 @@ import sqlite3
 from datetime import datetime
 import base64
 import six
+import os.path
+from os import path
 
 from ManagerFunctions import MenuEdit, ManagerFunctions
 
@@ -241,10 +243,21 @@ class CookWindow():
         def submit():
             pin = pin_field.get()
             if (pin != ""):
-                getClockState = open(pin + ".txt", "r")
-                isClockedOut = getClockState.read()
-                if isClockedOut == "OUT":
-                    clockOutFile = open(pin + ".txt", "w")
+                if(path.exists(pin + ".txt") == True):
+                    getClockState = open(pin + ".txt", "r")
+                    isClockedOut = getClockState.read()
+                    if isClockedOut == "OUT":
+                        clockOutFile = open(pin + ".txt", "w")
+                        clockOutFile.write(timestr)
+                        clockOutFile.close
+                        clockOutFile = open(pin + ".txt", "r+") # go back and open file for IN/OUT flag
+                        clockOutFile.seek(0) # go to line 1 of file
+                        clockOutFile.write("IN\n") # signal clock IN
+                        clockOutFile.close
+                        destroyDisplay()
+                        cookWindow = CookWindow()
+                elif(path.exists(pin + ".txt") != True):
+                    clockOutFile = open(pin + ".txt", "w+")
                     clockOutFile.write(timestr)
                     clockOutFile.close
                     clockOutFile = open(pin + ".txt", "r+") # go back and open file for IN/OUT flag
@@ -325,7 +338,7 @@ class StaffWindow():
         self.NewTable_Button.pack(side=LEFT, padx=5, pady=10)
 
         # close tab button
-        self.CloseTab_Button = Button(new_close_frame, text="Close Tab", font=('Segoe UI Light', 16), width=10)
+        self.CloseTab_Button = Button(new_close_frame, text="Close Tab", font=('Segoe UI Light', 16), width=10, command=self.closeTab)
         self.CloseTab_Button.pack(side=LEFT, padx=5, pady=10)
 
         # get check,check out frame
@@ -416,20 +429,31 @@ class StaffWindow():
         def submit():
             pin = pin_field.get()
             if (pin != ""):
-                getClockState = open(pin + ".txt", "r")
-                isClockedOut = getClockState.read()
-                if isClockedOut == "OUT":
-                    clockOutFile = open(pin + ".txt", "a+")
-                    clockOutFile.write("\nIn " + timestr)
+                if(path.exists(pin + ".txt") == True):
+                    getClockState = open(pin + ".txt", "r")
+                    isClockedOut = getClockState.read()
+                    if isClockedOut == "OUT":
+                        clockOutFile = open(pin + ".txt", "w")
+                        clockOutFile.write(timestr)
+                        clockOutFile.close
+                        clockOutFile = open(pin + ".txt", "r+") # go back and open file for IN/OUT flag
+                        clockOutFile.seek(0) # go to line 1 of file
+                        clockOutFile.write("IN\n") # signal clock IN
+                        clockOutFile.close
+                        destroyDisplay()
+                        cookWindow = StaffWindow()
+                elif(path.exists(pin + ".txt") != True):
+                    clockOutFile = open(pin + ".txt", "w+")
+                    clockOutFile.write(timestr)
                     clockOutFile.close
                     clockOutFile = open(pin + ".txt", "r+") # go back and open file for IN/OUT flag
                     clockOutFile.seek(0) # go to line 1 of file
                     clockOutFile.write("IN\n") # signal clock IN
                     clockOutFile.close
                     destroyDisplay()
-                    staffwindow = StaffWindow()
+                    cookWindow = StaffWindow()
                 else:
-                    print ("Staff must be clocked-out to clock-in")
+                    print ("Cook must be clocked-out to clock-in")
 
         self.SubmitButton = Button(frame, text="Clock In", font=('Segoe UI Light', 12), command=submit)
         self.SubmitButton.grid(row=3, column=1, ipadx="10")
@@ -447,7 +471,7 @@ class StaffWindow():
         def submit():
             if(tableList[int(pin_field.get())][1] == True ):
                 tableList[int(pin_field.get())][1] = False
-                tableList[int(pin_field.get())][2] = False
+                tableList[int(pin_field.get())][2] = True
                 print("Table added")
                 print(tableList[int(pin_field.get())][1])
                 messagebox.showinfo('Success', 'Table added.')
@@ -459,7 +483,30 @@ class StaffWindow():
         pin_field.grid(row=2, column=1, ipadx="10")
         self.SubmitButton = Button(frame, text="New Table", font=('Segoe UI Light', 12), command=submit)
         self.SubmitButton.grid(row=3, column=1, ipadx="10")
-
+    
+    def closeTab(self):
+        destroyDisplay()
+        frame = Frame(bg="#2d2d2d")
+        frame.pack()
+        root.geometry("1280x720+150+50")
+        header = Label(frame, text="Enter Table Number", font=('Segoe UI Light', 16), bg="#2d2d2d", fg="#ffffff")
+        header.grid(row=1, column=1, ipadx="10")
+        pin_field = Entry(frame)
+        def submit():
+            if(tableList[int(pin_field.get())][1] == False):
+                tableList[int(pin_field.get())][1] = True
+                tableList[int(pin_field.get())][2] = False
+                print("Table tab closed")
+                print(tableList[int(pin_field.get())][1])
+                messagebox.showinfo('Success', 'Table tab closed.')
+            elif(tableList[int(pin_field.get())][1] == True):
+                messagebox.showerror('Wrong Table', 'Table is not taken')
+                
+            destroyDisplay()
+            staffwindow = StaffWindow()
+        pin_field.grid(row=2, column=1, ipadx="10")
+        self.SubmitButton = Button(frame, text="Close Tab", font=('Segoe UI Light', 12), command=submit)
+        self.SubmitButton.grid(row=3, column=1, ipadx="10")
 # Manager window for GUI
 class ManagerWindow():
 
@@ -584,9 +631,20 @@ class ManagerWindow():
         def submit():
             pin = pin_field.get()
             if (pin != ""):
-                getClockState = open(pin + ".txt", "r")
-                isClockedIn = getClockState.read()
-                if isClockedIn == "IN":
+                if(path.exists(pin + ".txt") == True):
+                    getClockState = open(pin + ".txt", "r")
+                    isClockedIn = getClockState.read()
+                    if isClockedIn == "IN":
+                        clockOutFile = open(pin + ".txt", "a+")
+                        clockOutFile.write("\nOut " + timestr)
+                        clockOutFile.close
+                        clockOutFile = open(pin + ".txt", "r+") # go back and open file for IN/OUT flag
+                        clockOutFile.seek(0) # go to line 1 of file
+                        clockOutFile.write("OUT\n") # signal clock OUT
+                        clockOutFile.close
+                        destroyDisplay()
+                        mywindow = MainWindow(root)
+                elif(path.exists(pin + ".txt") != True):
                     clockOutFile = open(pin + ".txt", "a+")
                     clockOutFile.write("\nOut " + timestr)
                     clockOutFile.close
@@ -616,20 +674,31 @@ class ManagerWindow():
         def submit():
             pin = pin_field.get()
             if (pin != ""):
-                getClockState = open(pin + ".txt", "r")
-                isClockedOut = getClockState.read()
-                if isClockedOut == "OUT":
-                    clockOutFile = open(pin + ".txt", "a+")
-                    clockOutFile.write("\nIn " + timestr)
+                if(path.exists(pin + ".txt") == True):
+                    getClockState = open(pin + ".txt", "r")
+                    isClockedOut = getClockState.read()
+                    if isClockedOut == "OUT":
+                        clockOutFile = open(pin + ".txt", "w")
+                        clockOutFile.write(timestr)
+                        clockOutFile.close
+                        clockOutFile = open(pin + ".txt", "r+") # go back and open file for IN/OUT flag
+                        clockOutFile.seek(0) # go to line 1 of file
+                        clockOutFile.write("IN\n") # signal clock IN
+                        clockOutFile.close
+                        destroyDisplay()
+                        cookWindow = ManagerWindow()
+                elif(path.exists(pin + ".txt") != True):
+                    clockOutFile = open(pin + ".txt", "w+")
+                    clockOutFile.write(timestr)
                     clockOutFile.close
                     clockOutFile = open(pin + ".txt", "r+") # go back and open file for IN/OUT flag
                     clockOutFile.seek(0) # go to line 1 of file
                     clockOutFile.write("IN\n") # signal clock IN
                     clockOutFile.close
                     destroyDisplay()
-                    managerwindow = ManagerWindow()
+                    cookWindow = ManagerWindow()
                 else:
-                    print ("Manager must be clocked-out to clock-in")
+                    print ("Cook must be clocked-out to clock-in")
 
         self.SubmitButton = Button(frame, text="Clock In", font=('Segoe UI Light', 12), command=submit)
         self.SubmitButton.grid(row=3, column=1, ipadx="10")
